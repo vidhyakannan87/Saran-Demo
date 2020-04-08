@@ -23,7 +23,8 @@ public class DemoControllerImpl implements DemoController {
   }
 
   @Override
-  public void addAStudent(@RequestBody  Student student) {
+  public void addAStudent(@RequestBody Student student) {
+
     studentService.addStudent(student);
   }
 }

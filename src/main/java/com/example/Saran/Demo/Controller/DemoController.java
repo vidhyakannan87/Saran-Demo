@@ -14,7 +14,8 @@ public interface DemoController {
   @GetMapping
   List<Student> getAll();
 
+
   @PostMapping
-  void addAStudent(@RequestBody  Student student);
+  void addAStudent(@RequestBody Student student);
 
 }
