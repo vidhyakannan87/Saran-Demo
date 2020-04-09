@@ -1,6 +1,6 @@
 package com.example.Saran.Demo.Controller.impl;
 
-import com.example.Saran.Demo.Controller.DemoController;
+import com.example.Saran.Demo.Controller.StudentController;
 import com.example.Saran.Demo.Model.Student;
 import com.example.Saran.Demo.Service.StudentService;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-public class DemoControllerImpl implements DemoController {
+public class StudentControllerImpl implements StudentController {
 
   private StudentService studentService;
 
-  public DemoControllerImpl(StudentService studentService) {
+  public StudentControllerImpl(StudentService studentService) {
     this.studentService = studentService;
   }
 

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @RequestMapping("/student")
-public interface DemoController {
+public interface StudentController {
 
   @GetMapping
   List<Student> getAll();
