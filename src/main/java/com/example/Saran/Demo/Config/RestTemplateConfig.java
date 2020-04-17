@@ -1,20 +1,16 @@
 package com.example.Saran.Demo.Config;
 
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
+import com.example.Saran.Demo.API.Response.WeatherResponse;
+import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
 public class RestTemplateConfig {
 
-  public static String doGet(String baseUrl, RestTemplate restTemplate) {
+  public static ResponseEntity<WeatherResponse> doGet(String baseUrl, RestTemplate restTemplate) {
 
     HttpEntity<?> entity = getHttpEntity();
-
-    return restTemplate.exchange(baseUrl, HttpMethod.GET, entity, String.class).toString();
+    return restTemplate.exchange(baseUrl, HttpMethod.GET, entity, WeatherResponse.class);
   }
-
 
   private static HttpEntity<Object> getHttpEntity() {
 
