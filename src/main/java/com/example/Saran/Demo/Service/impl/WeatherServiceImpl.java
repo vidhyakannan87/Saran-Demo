@@ -20,6 +20,7 @@ public class WeatherServiceImpl implements WeatherService {
 
   private final RestTemplate restTemplate;
 
+
   public WeatherServiceImpl(RestTemplate restTemplate) {
     this.restTemplate = restTemplate;
     this.objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_IGNORED_PROPERTIES, false);
