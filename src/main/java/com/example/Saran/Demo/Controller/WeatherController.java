@@ -10,4 +10,8 @@ public interface WeatherController {
 
   @GetMapping("/{zip}/{country}")
   WeatherResponse getWeatherByZip(@PathVariable String zip, @PathVariable String country);
+
+  @GetMapping("/{cityName}")
+  WeatherResponse getWeatherByCityName(@PathVariable String cityName);
+
 }
