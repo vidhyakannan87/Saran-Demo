@@ -15,5 +15,4 @@ public class Course {
 
   private int credits;
 
-  private Department department;
 }

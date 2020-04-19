@@ -32,4 +32,14 @@ public class WeatherServiceImpl implements WeatherService {
 
 
   }
+
+  @Override
+  public WeatherResponse getWeatherDescriptionByCityName(String cityName) {
+    String url = "http://api.openweathermap.org/data/2.5/weather?q=%s&appid=%s";
+    url = String.format(url,cityName,openWeatherAPIKey);
+    WeatherResponse response = RestTemplateConfig.doGet(url, restTemplate).getBody();
+    return response;
+  }
+
+
 }
