@@ -16,5 +16,6 @@ public interface EmployeeService {
 
   void acceptStripeTos(long employeeId, HttpServletRequest request) throws StripeException;
 
+  void transferEmployeeSalary(long employeeId) throws StripeException;
 
 }

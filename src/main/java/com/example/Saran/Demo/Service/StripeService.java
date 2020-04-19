@@ -19,4 +19,6 @@ public interface StripeService {
 
   void acceptStripeTos(String accountId, HttpServletRequest request) throws StripeException;
 
+  void transferEmployeeSalary(Employee employee,double salary) throws StripeException;
+
 }

@@ -2,6 +2,7 @@ package com.example.Saran.Demo.Service.impl;
 
 import com.example.Saran.Demo.API.Request.BankAccountRequest;
 import com.example.Saran.Demo.Model.Employee;
+import com.example.Saran.Demo.Model.SalaryMap;
 import com.example.Saran.Demo.Repository.EmployeeRepository;
 import com.example.Saran.Demo.Service.EmployeeService;
 import com.example.Saran.Demo.Service.StripeService;
@@ -17,10 +18,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 
   private final EmployeeRepository employeeRepository;
 
+  private final SalaryMap salaryMap;
+
   private final StripeService stripeService;
 
   public EmployeeServiceImpl(EmployeeRepository employeeRepository, StripeService stripeService) {
     this.employeeRepository = employeeRepository;
+    this.salaryMap = new SalaryMap();
     this.stripeService = stripeService;
   }
 
@@ -52,9 +56,18 @@ public class EmployeeServiceImpl implements EmployeeService {
 
   @Override
   public void acceptStripeTos(long employeeId, HttpServletRequest request) throws StripeException {
-     Employee employee = getAnEmployee(employeeId);
+    Employee employee = getAnEmployee(employeeId);
 
-     stripeService.acceptStripeTos(employee.getStripeConnectId(),request);
+    stripeService.acceptStripeTos(employee.getStripeConnectId(), request);
+
+  }
+
+  @Override
+  public void transferEmployeeSalary(long employeeId) throws StripeException {
+    Employee employee = getAnEmployee(employeeId);
+    double salary = salaryMap.getSalaryMap().get(employee.getSalaryGrade());
+    stripeService.transferEmployeeSalary(employee, salary);
+
 
   }
 

@@ -22,4 +22,7 @@ public interface EmployeeController {
   @PatchMapping("/{id}/acceptStripeTos")
   void acceptStripeTos(@PathVariable long id, HttpServletRequest request) throws StripeException;
 
+  @PostMapping("/{id}/salary")
+  void transferEmployeeSalary(@PathVariable long id) throws StripeException;
+
 }

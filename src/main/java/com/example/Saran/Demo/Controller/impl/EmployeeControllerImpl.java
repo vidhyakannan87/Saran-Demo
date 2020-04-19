@@ -38,6 +38,11 @@ public class EmployeeControllerImpl implements EmployeeController {
 
   @Override
   public void acceptStripeTos(@PathVariable long id, HttpServletRequest request) throws StripeException {
-      employeeService.acceptStripeTos(id,request);
+    employeeService.acceptStripeTos(id, request);
+  }
+
+  @Override
+  public void transferEmployeeSalary(@PathVariable long id) throws StripeException {
+    employeeService.transferEmployeeSalary(id);
   }
 }

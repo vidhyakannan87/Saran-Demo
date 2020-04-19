@@ -4,6 +4,8 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDateTime;
+
 @Document
 @Data
 public class Employee {
@@ -25,5 +27,9 @@ public class Employee {
 
   private String phoneNumber;
 
-  private String address;
+  private String ssn;
+
+  private String   dob;
+
+  private Address address;
 }
