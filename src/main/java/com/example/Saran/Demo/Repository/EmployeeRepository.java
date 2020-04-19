@@ -1,11 +1,11 @@
 package com.example.Saran.Demo.Repository;
 
-import com.example.Saran.Demo.Model.Student;
+import com.example.Saran.Demo.Model.Employee;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface StudentRepository extends MongoRepository<Student, String> {
+public interface EmployeeRepository extends MongoRepository<Employee, String> {
 
-  Student findByStudentId(String id);
+  Employee findByEmployeeId(long id);
 }

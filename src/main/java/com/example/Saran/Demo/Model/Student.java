@@ -9,6 +9,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Setter
 public class Student {
 
+  private String studentId;
+
   private String firstName;
 
   private String lastName;
