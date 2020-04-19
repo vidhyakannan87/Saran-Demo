@@ -13,19 +13,20 @@ import java.util.List;
 @RestController
 public class DepartmentControllerImpl implements DepartmentController {
 
-    private final DepartmentService departmentService;
-    public DepartmentControllerImpl(DepartmentService departmentService) {
-        this.departmentService = departmentService;
-    }
+  private final DepartmentService departmentService;
 
-    @Override
-    public void addADepartment(@RequestBody Department department) {
-        departmentService.addADepartment(department);
-    }
+  public DepartmentControllerImpl(DepartmentService departmentService) {
+    this.departmentService = departmentService;
+  }
 
-    @Override
-    public List<Course> getCoursesByDepartmentName(@PathVariable String deptName) {
-        return departmentService.getCoursesByDepartmentName(deptName);
-    }
+  @Override
+  public void addADepartment(@RequestBody Department department) {
+    departmentService.addADepartment(department);
+  }
+
+  @Override
+  public List<Course> getCoursesByDepartmentName(@PathVariable long deptId) {
+    return departmentService.getCoursesByDepartmentId(deptId);
+  }
 
 }

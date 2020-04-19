@@ -7,23 +7,32 @@ import com.example.Saran.Demo.Service.DepartmentService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DepartmentServiceImpl implements DepartmentService {
 
-    private final DepartmentRepository departmentRepository;
+  private final DepartmentRepository departmentRepository;
 
-    public DepartmentServiceImpl(DepartmentRepository departmentRepository) {
-        this.departmentRepository = departmentRepository;
-    }
+  public DepartmentServiceImpl(DepartmentRepository departmentRepository) {
+    this.departmentRepository = departmentRepository;
+  }
 
-    @Override
-    public void addADepartment(Department department) {
-        departmentRepository.save(department);
-    }
+  @Override
+  public void addADepartment(Department department) {
 
-    @Override
-    public List<Course> getCoursesByDepartmentName(String deptName) {
-        return departmentRepository.getCoursesByDepartmentName(deptName);
+    departmentRepository.insert(department);
+
+  }
+
+  @Override
+  public List<Course> getCoursesByDepartmentId(long id) {
+
+    //I am fetching a department and then returning its course list
+    Optional<Department> department = Optional.ofNullable(departmentRepository.findById(id));
+    if (department.isPresent()) {
+      return department.get().getCourseList();
     }
+    return null;
+  }
 }

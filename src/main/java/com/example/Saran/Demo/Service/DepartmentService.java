@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface DepartmentService {
 
-    void addADepartment(Department department);
+  void addADepartment(Department department);
 
-    List<Course> getCoursesByDepartmentName(String depName);
+  List<Course> getCoursesByDepartmentId(long deptId);
 }
