@@ -7,4 +7,6 @@ public interface WeatherService {
 
   WeatherResponse getWeatherDescriptionByZip(String zip, String country);
 
+  WeatherResponse getWeatherDescriptionByCityName(String cityName);
+
 }

@@ -19,4 +19,9 @@ public class WeatherControllerImpl implements WeatherController {
   public WeatherResponse getWeatherByZip(@PathVariable String zip, @PathVariable String country) {
     return weatherService.getWeatherDescriptionByZip(zip, country);
   }
+
+  @Override
+  public WeatherResponse getWeatherByCityName(String cityName) {
+    return weatherService.getWeatherDescriptionByCityName(cityName);
+  }
 }
