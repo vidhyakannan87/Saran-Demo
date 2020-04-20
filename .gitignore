@@ -29,3 +29,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+src/main/resources/application-vidhya.properties
+src/main/resources/application-vidhya.properties
+

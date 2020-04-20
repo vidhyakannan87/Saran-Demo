@@ -2,6 +2,7 @@ package com.example.Saran.Demo.Model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "Student")
@@ -9,10 +10,19 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Setter
 public class Student {
 
-  private String studentId;
+  @Id
+  private String id;
 
   private String firstName;
 
   private String lastName;
+
+  private String email;
+
+  private Address address;
+
+  private String dob;
+
+  private String phoneNumber;
 
 }

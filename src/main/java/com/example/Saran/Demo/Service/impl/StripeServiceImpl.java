@@ -89,7 +89,7 @@ public class StripeServiceImpl implements StripeService {
 
   private Map<String, Object> createStripeChargeParams(double amount, String token, Student student) {
 
-    String description = "Fee Payment for current Semester by Student id: " + student.getStudentId();
+    String description = "Fee Payment for current Semester by Student id: " + student.getId();
 
     Map<String, Object> chargeParams = new HashMap<>();
     chargeParams.put("amount", convertDollarsToCents(amount));

@@ -32,8 +32,8 @@ public class StudentControllerImpl implements StudentController {
   }
 
   @Override
-  public void addPayment(@PathVariable String id, @RequestBody StripeChargeRequest stripeChargeRequest) throws StripeException {
+  public void addPayment(@PathVariable long id, @RequestBody StripeChargeRequest stripeChargeRequest) throws StripeException {
 
-    studentService.paySemesterFee(id ,stripeChargeRequest);
+    studentService.paySemesterFee(id, stripeChargeRequest);
   }
 }

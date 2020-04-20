@@ -5,6 +5,7 @@ import com.example.Saran.Demo.Model.Student;
 import com.example.Saran.Demo.Repository.StudentRepository;
 import com.example.Saran.Demo.Service.StripeService;
 import com.example.Saran.Demo.Service.StudentService;
+import com.example.Saran.Demo.Service.TwilioService;
 import com.stripe.exception.StripeException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,18 +14,23 @@ import javax.ws.rs.BadRequestException;
 import java.util.List;
 import java.util.Optional;
 
+import static com.example.Saran.Demo.Utility.SmsUtility.WELCOME_SMS_STUDENT;
+
 @Service
 public class StudentServiceImpl implements StudentService {
 
 
   private final StudentRepository studentRepository;
 
+  private final TwilioService twilioService;
+
   @Autowired //Equal to instantiating and creating an object of a class in this case it is Stripe Service
   private StripeService stripeService;
 
 
-  public StudentServiceImpl(StudentRepository studentRepository) {
+  public StudentServiceImpl(StudentRepository studentRepository, TwilioService twilioService) {
     this.studentRepository = studentRepository;
+    this.twilioService = twilioService;
   }
 
   @Override
@@ -36,12 +42,16 @@ public class StudentServiceImpl implements StudentService {
 
   @Override
   public void addStudent(Student student) {
+
+    twilioService.sendSMS(student.getPhoneNumber(), String.format(WELCOME_SMS_STUDENT, student.getFirstName()));
     studentRepository.insert(student);
+
+
   }
 
   @Override
-  public Student getAStudent(String id) {
-    Optional<Student> optionalStudent = Optional.ofNullable(studentRepository.findByStudentId(id));
+  public Student getAStudent(long id) {
+    Optional<Student> optionalStudent = studentRepository.findById(id);
     if (optionalStudent.isPresent()) {
       return optionalStudent.get();
     } else {
@@ -51,8 +61,8 @@ public class StudentServiceImpl implements StudentService {
   }
 
   @Override
-  public void paySemesterFee(String id, StripeChargeRequest stripeChargeRequest) throws StripeException {
+  public void paySemesterFee(long id, StripeChargeRequest stripeChargeRequest) throws StripeException {
     Student student = getAStudent(id);
-    stripeService.createStripeCharge(stripeChargeRequest.getAmount(), stripeChargeRequest.getStripeToken(),student);
+    stripeService.createStripeCharge(stripeChargeRequest.getAmount(), stripeChargeRequest.getStripeToken(), student);
   }
 }

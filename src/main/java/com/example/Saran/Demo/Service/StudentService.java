@@ -12,8 +12,8 @@ public interface StudentService {
 
   void addStudent(Student student);
 
-  Student getAStudent(String id);
+  Student getAStudent(long id);
 
-  void paySemesterFee(String id, StripeChargeRequest request) throws StripeException;
+  void paySemesterFee(long id, StripeChargeRequest request) throws StripeException;
 
 }

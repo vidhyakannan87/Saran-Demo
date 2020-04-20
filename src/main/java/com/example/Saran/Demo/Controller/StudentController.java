@@ -5,7 +5,6 @@ import com.example.Saran.Demo.Model.Student;
 import com.stripe.exception.StripeException;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RequestMapping("/student")
@@ -19,6 +18,6 @@ public interface StudentController {
   void addAStudent(@RequestBody Student student);
 
   @PostMapping("/{id}/payment")
-  void addPayment(@PathVariable String id, @RequestBody StripeChargeRequest stripeChargeRequest) throws StripeException;
+  void addPayment(@PathVariable long id, @RequestBody StripeChargeRequest stripeChargeRequest) throws StripeException;
 
 }
