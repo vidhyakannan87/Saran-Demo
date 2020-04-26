@@ -10,14 +10,14 @@ import com.example.Saran.Demo.Service.TwilioService;
 import com.stripe.exception.StripeException;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.BadRequestException;
 import java.time.LocalDateTime;
 import java.time.format.TextStyle;
 import java.util.Locale;
 import java.util.Optional;
 
-import static com.example.Saran.Demo.Utility.SmsUtility.SALARY_CREDIT_SMS;
+import static com.example.Saran.Demo.Service.Utility.SmsUtility.SALARY_CREDIT_SMS;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -48,9 +48,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     Optional<Employee> employeeOptional = Optional.ofNullable(employeeRepository.findByEmployeeId(id));
     if (employeeOptional.isPresent()) {
       return employeeOptional.get();
-    } else {
-      throw new BadRequestException("Invalid Employee Id");
     }
+    throw new EntityNotFoundException("Invalid Employee Id");
   }
 
   @Override

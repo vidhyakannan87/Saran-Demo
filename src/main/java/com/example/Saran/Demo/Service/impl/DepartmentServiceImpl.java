@@ -6,6 +6,7 @@ import com.example.Saran.Demo.Repository.DepartmentRepository;
 import com.example.Saran.Demo.Service.DepartmentService;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,13 +27,17 @@ public class DepartmentServiceImpl implements DepartmentService {
   }
 
   @Override
+  public Department getADepartment(long id) {
+    Optional<Department> departmentOptional = departmentRepository.findById(id);
+    if (departmentOptional.isPresent()) {
+      return departmentOptional.get();
+    }
+    throw new EntityNotFoundException("Invalid Department Id");
+  }
+
+  @Override
   public List<Course> getCoursesByDepartmentId(long id) {
 
-    //I am fetching a department and then returning its course list
-    Optional<Department> department = departmentRepository.findById(id);
-    if (department.isPresent()) {
-      return department.get().getCourseList();
-    }
-    return null;
+    return getADepartment(id).getCourseList();
   }
 }

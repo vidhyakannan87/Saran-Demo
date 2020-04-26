@@ -1,4 +1,4 @@
-package com.example.Saran.Demo.Utility;
+package com.example.Saran.Demo.Service.Utility;
 
 public class StripeUtility {
 

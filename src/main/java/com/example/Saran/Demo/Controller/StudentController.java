@@ -14,6 +14,9 @@ public interface StudentController {
   List<Student> getAll();
 
 
+  @GetMapping("/{id}")
+  Student getAStudent(@PathVariable long id);
+
   @PostMapping
   void addAStudent(@RequestBody Student student);
 

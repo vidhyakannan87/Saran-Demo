@@ -23,7 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.example.Saran.Demo.Utility.StripeUtility.convertDollarsToCents;
+import static com.example.Saran.Demo.Service.Utility.StripeUtility.convertDollarsToCents;
 
 @Service
 public class StripeServiceImpl implements StripeService {

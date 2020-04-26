@@ -9,5 +9,7 @@ public interface DepartmentService {
 
   void addADepartment(Department department);
 
+  Department getADepartment(long id);
+
   List<Course> getCoursesByDepartmentId(long deptId);
 }

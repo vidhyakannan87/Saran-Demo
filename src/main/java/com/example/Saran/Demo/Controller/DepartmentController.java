@@ -12,9 +12,11 @@ public interface DepartmentController {
   @PostMapping
   void addADepartment(@RequestBody Department department);
 
+  @GetMapping("/{id}")
+  Department getADepartment(@PathVariable long id);
 
   //I changed this to ID since it is more unique for every dept
-  @GetMapping("/{deptId}")
-  List<Course> getCoursesByDepartmentName(@PathVariable long deptId);
+  @GetMapping("/{deptId}/courses")
+  List<Course> getCoursesByDepartment(@PathVariable long deptId);
 
 }

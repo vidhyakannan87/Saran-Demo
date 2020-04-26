@@ -25,7 +25,12 @@ public class DepartmentControllerImpl implements DepartmentController {
   }
 
   @Override
-  public List<Course> getCoursesByDepartmentName(@PathVariable long deptId) {
+  public Department getADepartment(long id) {
+    return departmentService.getADepartment(id);
+  }
+
+  @Override
+  public List<Course> getCoursesByDepartment(@PathVariable long deptId) {
     return departmentService.getCoursesByDepartmentId(deptId);
   }
 

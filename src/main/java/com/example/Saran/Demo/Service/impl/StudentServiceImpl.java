@@ -10,11 +10,11 @@ import com.stripe.exception.StripeException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.ws.rs.BadRequestException;
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
-import static com.example.Saran.Demo.Utility.SmsUtility.WELCOME_SMS_STUDENT;
+import static com.example.Saran.Demo.Service.Utility.SmsUtility.WELCOME_SMS_STUDENT;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -54,9 +54,8 @@ public class StudentServiceImpl implements StudentService {
     Optional<Student> optionalStudent = studentRepository.findById(id);
     if (optionalStudent.isPresent()) {
       return optionalStudent.get();
-    } else {
-      throw new BadRequestException("Invalid Student Id");
     }
+    throw new EntityNotFoundException("Invalid Student Id");
 
   }
 
