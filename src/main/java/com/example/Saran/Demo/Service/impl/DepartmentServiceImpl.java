@@ -26,18 +26,44 @@ public class DepartmentServiceImpl implements DepartmentService {
 
   }
 
+  public Department updateDepartmentByDeptId(Department department, long deptId) {
+    Optional<Department> oldDepartment = departmentRepository.findById(deptId);
+    if (oldDepartment.isPresent()) {
+      Department tempDepartment = oldDepartment.get();
+      tempDepartment = department;
+      tempDepartment.setId(deptId);
+      departmentRepository.save(tempDepartment);
+      return tempDepartment;
+    }
+    department.setId(deptId);
+    departmentRepository.insert(department);
+    return department;
+  }
+
   @Override
-  public Department getADepartment(long id) {
-    Optional<Department> departmentOptional = departmentRepository.findById(id);
+  public void deleteByDeptId(long deptId) {
+    Department department = findByID(deptId);
+    if (department != null) {
+      departmentRepository.delete(department);
+    }
+  }
+
+
+  @Override
+  public Department findByID(long deptId) {
+    Optional<Department> departmentOptional = departmentRepository.findById(deptId);
     if (departmentOptional.isPresent()) {
       return departmentOptional.get();
     }
     throw new EntityNotFoundException("Invalid Department Id");
   }
 
+
   @Override
   public List<Course> getCoursesByDepartmentId(long id) {
-
-    return getADepartment(id).getCourseList();
+    Department department = findByID(id);
+    return department.getCourseList();
   }
+
+
 }

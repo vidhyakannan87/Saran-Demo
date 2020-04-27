@@ -41,6 +41,15 @@ public class StudentServiceImpl implements StudentService {
 
 
   @Override
+  public Student getStudentById(long id) {
+    Optional<Student> oldStudent = studentRepository.findById(id);
+    if (oldStudent.isPresent()) {
+      return oldStudent.get();
+    }
+    throw new EntityNotFoundException("Invalid Student Id");
+  }
+
+  @Override
   public void addStudent(Student student) {
 
     twilioService.sendSMS(student.getPhoneNumber(), String.format(WELCOME_SMS_STUDENT, student.getFirstName()));
@@ -50,18 +59,42 @@ public class StudentServiceImpl implements StudentService {
   }
 
   @Override
-  public Student getAStudent(long id) {
-    Optional<Student> optionalStudent = studentRepository.findById(id);
-    if (optionalStudent.isPresent()) {
-      return optionalStudent.get();
+  public Student updateStudent(Student student, long studentId) {
+    Student oldStudent = getStudentById(studentId);
+    if (oldStudent != null) {
+      oldStudent = student;
+      oldStudent.setId(studentId);
+      studentRepository.save(oldStudent);
+      return oldStudent;
     }
-    throw new EntityNotFoundException("Invalid Student Id");
+    student.setId(studentId);
+    studentRepository.insert(student);
+    return student;
+  }
 
+  @Override
+  public Student patchUpdateStudent(Student student, long studentID) {
+    Student oldStudent = getStudentById(studentID);
+    if (oldStudent != null) {
+      oldStudent.setFirstName(student.getFirstName());
+      studentRepository.save(oldStudent);
+      return oldStudent;
+    }
+    return null;
+  }
+
+  @Override
+  public void deleteStudent(long studentId) {
+    Student oldStudent = getStudentById(studentId);
+    if (oldStudent != null) {
+      studentRepository.delete(oldStudent);
+    }
   }
 
   @Override
   public void paySemesterFee(long id, StripeChargeRequest stripeChargeRequest) throws StripeException {
-    Student student = getAStudent(id);
+    Student student = getStudentById(id);
     stripeService.createStripeCharge(stripeChargeRequest.getAmount(), stripeChargeRequest.getStripeToken(), student);
   }
+
 }

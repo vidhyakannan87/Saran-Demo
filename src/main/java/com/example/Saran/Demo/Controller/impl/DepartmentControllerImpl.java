@@ -24,9 +24,20 @@ public class DepartmentControllerImpl implements DepartmentController {
     departmentService.addADepartment(department);
   }
 
+
+  @Override
+  public Department updateDepartmentByDeptId(@RequestBody Department department, @PathVariable long deptId) {
+    return departmentService.updateDepartmentByDeptId(department, deptId);
+  }
+
+  @Override
+  public void deleteByDeptId(@PathVariable long deptId) {
+    departmentService.deleteByDeptId(deptId);
+  }
+
   @Override
   public Department getADepartment(long id) {
-    return departmentService.getADepartment(id);
+    return departmentService.findByID(id);
   }
 
   @Override

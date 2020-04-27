@@ -13,12 +13,20 @@ public interface StudentController {
   @GetMapping
   List<Student> getAll();
 
-
   @GetMapping("/{id}")
-  Student getAStudent(@PathVariable long id);
+  Student getStudentById(@PathVariable long id);
 
   @PostMapping
   void addAStudent(@RequestBody Student student);
+
+  @PutMapping("/{studentId}")
+  Student updateStudent(@RequestBody Student student, @PathVariable long studentId);
+
+  @PatchMapping("/{studentID}")
+  Student patchUpdateStudent(@RequestBody Student student, @PathVariable long studentId);
+
+  @DeleteMapping("/{studentId}")
+  void deleteStudent(@PathVariable long studentId);
 
   @PostMapping("/{id}/payment")
   void addPayment(@PathVariable long id, @RequestBody StripeChargeRequest stripeChargeRequest) throws StripeException;

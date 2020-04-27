@@ -10,9 +10,15 @@ public interface StudentService {
 
   List<Student> getAllStudents();
 
+  Student getStudentById(long id);
+
   void addStudent(Student student);
 
-  Student getAStudent(long id);
+  Student updateStudent(Student student, long studentId);
+
+  Student patchUpdateStudent(Student student, long studentID);
+
+  void deleteStudent(long studentId);
 
   void paySemesterFee(long id, StripeChargeRequest request) throws StripeException;
 

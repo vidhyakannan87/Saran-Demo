@@ -26,14 +26,29 @@ public class StudentControllerImpl implements StudentController {
   }
 
   @Override
-  public Student getAStudent(@PathVariable long id) {
-    return studentService.getAStudent(id);
-  }
-
-  @Override
   public void addAStudent(@RequestBody Student student) {
 
     studentService.addStudent(student);
+  }
+
+  @Override
+  public Student getStudentById(@PathVariable long id) {
+    return studentService.getStudentById(id);
+  }
+
+  @Override
+  public Student updateStudent(@RequestBody Student student, @PathVariable long studentId) {
+    return studentService.updateStudent(student, studentId);
+  }
+
+  @Override
+  public Student patchUpdateStudent(@RequestBody Student student, @PathVariable long studentId) {
+    return studentService.patchUpdateStudent(student, studentId);
+  }
+
+  @Override
+  public void deleteStudent(long studentId) {
+    studentService.deleteStudent(studentId);
   }
 
   @Override
