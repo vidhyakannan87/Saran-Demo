@@ -9,12 +9,17 @@ import java.util.List;
 @RequestMapping("/department")
 public interface DepartmentController {
 
-  @PostMapping
-  void addADepartment(@RequestBody Department department);
+    @PostMapping
+    void addADepartment(@RequestBody Department department);
 
 
-  //I changed this to ID since it is more unique for every dept
-  @GetMapping("/{deptId}")
-  List<Course> getCoursesByDepartmentName(@PathVariable long deptId);
+    //I changed this to ID since it is more unique for every dept
+    @GetMapping("/{deptId}")
+    List<Course> getCoursesByDepartmentName(@PathVariable long deptId);
 
+    @PutMapping("/{deptId}")
+    Department updateDepartmentByDeptId(@RequestBody Department department, @PathVariable long deptId);
+
+    @DeleteMapping("/{deptId}")
+    void deleteByDeptId(@PathVariable long deptId);
 }
