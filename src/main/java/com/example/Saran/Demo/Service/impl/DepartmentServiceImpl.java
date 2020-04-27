@@ -26,6 +26,11 @@ public class DepartmentServiceImpl implements DepartmentService {
 
   }
 
+  @Override
+  public List<Department> getAll() {
+    return departmentRepository.findAll();
+  }
+
   public Department updateDepartmentByDeptId(Department department, long deptId) {
     Optional<Department> oldDepartment = departmentRepository.findById(deptId);
     if (oldDepartment.isPresent()) {

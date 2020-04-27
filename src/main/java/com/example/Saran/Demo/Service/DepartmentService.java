@@ -9,6 +9,8 @@ public interface DepartmentService {
 
   void addADepartment(Department department);
 
+  List<Department> getAll();
+
   Department findByID(long id);
 
   Department updateDepartmentByDeptId(Department department, long deptId);
