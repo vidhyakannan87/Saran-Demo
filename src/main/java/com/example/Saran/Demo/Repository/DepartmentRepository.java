@@ -10,6 +10,4 @@ import org.springframework.stereotype.Repository;
 //which should have been MongoRepository<Department, String>
 public interface DepartmentRepository extends MongoRepository<Department, Long> {
 
-  //Department findById(long id);
-
 }

@@ -4,9 +4,6 @@ import com.example.Saran.Demo.Model.Course;
 import com.example.Saran.Demo.Model.Department;
 import com.example.Saran.Demo.Repository.DepartmentRepository;
 import com.example.Saran.Demo.Service.DepartmentService;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -61,7 +58,6 @@ public class DepartmentServiceImpl implements DepartmentService {
             departmentRepository.delete(department);
         }
     }
-
     public Department findByID(long deptId) {
         Optional<Department> oldDepartment = departmentRepository.findById(deptId);
         if (oldDepartment.isPresent()) {
