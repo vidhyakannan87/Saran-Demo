@@ -29,7 +29,7 @@ public class DepartmentServiceImpl implements DepartmentService {
   public List<Course> getCoursesByDepartmentId(long id) {
 
     //I am fetching a department and then returning its course list
-    Optional<Department> department = Optional.ofNullable(departmentRepository.findById(id));
+    Optional<Department> department = departmentRepository.findById(id);
     if (department.isPresent()) {
       return department.get().getCourseList();
     }
