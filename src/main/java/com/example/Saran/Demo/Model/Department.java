@@ -1,5 +1,6 @@
 package com.example.Saran.Demo.Model;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
@@ -10,6 +11,7 @@ import java.util.List;
 @Document
 @Getter
 @Setter
+@Data
 public class Department {
 
   @Id

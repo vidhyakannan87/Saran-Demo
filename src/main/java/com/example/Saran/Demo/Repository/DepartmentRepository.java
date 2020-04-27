@@ -8,8 +8,8 @@ import org.springframework.stereotype.Repository;
 //This was the main error You had this as
 //public interface DepartmentRepository extends MongoRepository<Course, String> {
 //which should have been MongoRepository<Department, String>
-public interface DepartmentRepository extends MongoRepository<Department, String> {
+public interface DepartmentRepository extends MongoRepository<Department, Long> {
 
-  Department findById(long id);
+  //Department findById(long id);
 
 }
